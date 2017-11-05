@@ -49,6 +49,7 @@ func (mr *Master) schedule(phase jobPhase) {  //表示job阶段, 值为 "Map" �
 				ok := call(worker, "Worker.DoTask", &args, new(struct{}))
 				if ok {
 					wg.Done()
+					// ???
 					mr.registerChannel <- worker
 					break
 				}  // else 表示失败, 使用新的worker 则会进入下一次for循环重试
